@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: int_customers
+    description: "Customer dimension"
+    columns:
+      - name: customer_id
+        description: "Customer ID"
+      - name: customer_name
+        description: "Customer name"
+      - name: email
+        description: "Email"
+      - name: phone
+        description: "Phone"
+      - name: customer_type
+        description: "Customer type"
+      - name: region
+        description: "Region"
+      - name: status
+        description: "Status"
+      - name: registration_date
+        description: "Registration date"
+      - name: last_purchase_date
+        description: "Last purchase date"

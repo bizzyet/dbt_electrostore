@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: int_date
+    description: "Date dimension with calendar attributes"
+    columns:
+      - name: date_day
+        description: "The actual date value"
+      - name: year
+        description: "Four-digit year"
+      - name: quarter
+        description: "Quarter number (1-4)"
+      - name: month_number
+        description: "Month number (1-12)"
+      - name: month_name
+        description: "Full month name"
+      - name: week_of_year
+        description: "Week number within the year"
+      - name: day_of_month
+        description: "Day number within the month"
+      - name: day_of_week
+        description: "Day of week number"
+      - name: day_name
+        description: "Full day name"
+      - name: is_weekend
+        description: "Flag indicating if date is a weekend (1=yes, 0=no)"

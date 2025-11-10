@@ -1,0 +1,11 @@
+packages:
+  - name: dbt_utils
+    package: dbt-labs/dbt_utils
+    version: 1.3.2
+  - name: codegen
+    package: dbt-labs/codegen
+    version: 0.13.1
+  - name: tsql_utils
+    package: dbt-msft/tsql_utils
+    version: 1.2.0
+sha1_hash: 980e92af827e9286998e30b16a14a692211492ab

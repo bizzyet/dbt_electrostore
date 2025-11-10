@@ -1,0 +1,11 @@
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Python
+*.pyc
+__pycache__/
+
+# OS
+.DS_Store

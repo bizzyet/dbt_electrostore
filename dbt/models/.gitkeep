@@ -1,0 +1,7 @@
+# This directory will contain your dbt models
+#
+# Recommended structure:
+# models/
+#   staging/        - Raw data transformations
+#   intermediate/   - Business logic transformations
+#   marts/          - Final analytics-ready models

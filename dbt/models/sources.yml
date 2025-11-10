@@ -1,0 +1,70 @@
+version: 2
+
+# Define your source data here
+# Sources represent raw tables in your database that dbt will read from
+# Learn more: https://docs.getdbt.com/docs/build/sources
+
+sources:
+  - name: archive_electrostore
+    description: "Raw data loaded by DLT pipeline"
+    database: little-debby
+    schema: archive_electrostore
+    tables:
+      - name: customers
+        description: "Customer dimension data from Dummy API"
+        columns:
+          - name: customer_id
+            description: "Primary key for customers"
+            tests:
+              - unique
+              - not_null
+
+      - name: products
+        description: "Product catalog from Dummy API"
+        columns:
+          - name: product_id
+            description: "Primary key for products"
+            tests:
+              - unique
+              - not_null
+
+      - name: stores
+        description: "Store locations from Dummy API"
+        columns:
+          - name: store_id
+            description: "Primary key for stores"
+            tests:
+              - unique
+              - not_null
+
+      - name: sales
+        description: "Sales transactions (fact table)"
+        columns:
+          - name: sale_id
+            description: "Primary key for sales"
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: "Foreign key to customers"
+          - name: product_id
+            description: "Foreign key to products"
+          - name: store_id
+            description: "Foreign key to stores"
+
+      - name: inventory
+        description: "Inventory levels (fact table)"
+        columns:
+          - name: inventory_id
+            description: "Primary key for inventory records"
+            tests:
+              - unique
+              - not_null
+
+# Example: Add more sources as you connect to other data
+# sources:
+#   - name: another_schema
+#     database: little-debby
+#     schema: another_schema_name
+#     tables:
+#       - name: table_name

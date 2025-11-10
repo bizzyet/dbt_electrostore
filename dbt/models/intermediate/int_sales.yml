@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: int_sales
+    description: "Sales transactions"
+    columns:
+      - name: sale_id
+        description: "Sale ID"
+      - name: customer_id
+        description: "Customer ID"
+      - name: product_id
+        description: "Product ID"
+      - name: store_id
+        description: "Store ID"
+      - name: sale_date
+        description: "Sale date"
+      - name: quantity
+        description: "Quantity"
+      - name: unit_price
+        description: "Unit price"
+      - name: discount_percent
+        description: "Discount percent"
+      - name: total_amount
+        description: "Total amount"

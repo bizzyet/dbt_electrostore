@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: int_products
+    description: "Product dimension"
+    columns:
+      - name: product_id
+        description: "Product ID"
+      - name: product_name
+        description: "Product name"
+      - name: sku
+        description: "SKU"
+      - name: category
+        description: "Category"
+      - name: subcategory
+        description: "Subcategory"
+      - name: brand
+        description: "Brand"
+      - name: unit_price
+        description: "Unit price"
+      - name: cost
+        description: "Cost"
+      - name: status
+        description: "Status"
+      - name: launch_date
+        description: "Launch date"

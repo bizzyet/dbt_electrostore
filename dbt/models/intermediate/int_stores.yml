@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: int_stores
+    description: "Store dimension"
+    columns:
+      - name: store_id
+        description: "Store ID"
+      - name: store_name
+        description: "Store name"
+      - name: store_code
+        description: "Store code"
+      - name: city
+        description: "City"
+      - name: state
+        description: "State"
+      - name: region
+        description: "Region"
+      - name: store_type
+        description: "Store type"
+      - name: size_sqft
+        description: "Size in sqft"
+      - name: status
+        description: "Status"
+      - name: open_date
+        description: "Open date"

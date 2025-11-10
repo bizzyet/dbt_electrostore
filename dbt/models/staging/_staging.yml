@@ -1,0 +1,145 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned customer data"
+    columns:
+      - name: customer_id
+        description: "Customer ID"
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: "Customer name"
+      - name: email
+        description: "Email address"
+      - name: phone
+        description: "Phone number"
+      - name: customer_type
+        description: "Customer type"
+      - name: region
+        description: "Customer region"
+      - name: status
+        description: "Customer status"
+      - name: registration_date
+        description: "Registration date"
+      - name: last_purchase_date
+        description: "Last purchase date"
+      - name: _dlt_load_id
+        description: "Load ID from DLT"
+      - name: _dlt_id
+        description: "Row ID from DLT"
+
+  - name: stg_products
+    description: "Cleaned product data"
+    columns:
+      - name: product_id
+        description: "Product ID"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Product name"
+      - name: sku
+        description: "Stock keeping unit"
+      - name: category
+        description: "Product category"
+      - name: subcategory
+        description: "Product subcategory"
+      - name: brand
+        description: "Product brand"
+      - name: unit_price
+        description: "Unit price"
+      - name: cost
+        description: "Unit cost"
+      - name: status
+        description: "Product status"
+      - name: launch_date
+        description: "Launch date"
+      - name: _dlt_load_id
+        description: "Load ID from DLT"
+      - name: _dlt_id
+        description: "Row ID from DLT"
+
+  - name: stg_stores
+    description: "Cleaned store data"
+    columns:
+      - name: store_id
+        description: "Store ID"
+        tests:
+          - unique
+          - not_null
+      - name: store_name
+        description: "Store name"
+      - name: store_code
+        description: "Store code"
+      - name: city
+        description: "City"
+      - name: state
+        description: "State"
+      - name: region
+        description: "Region"
+      - name: store_type
+        description: "Store type"
+      - name: size_sqft
+        description: "Store size in square feet"
+      - name: status
+        description: "Store status"
+      - name: open_date
+        description: "Opening date"
+      - name: _dlt_load_id
+        description: "Load ID from DLT"
+      - name: _dlt_id
+        description: "Row ID from DLT"
+
+  - name: stg_sales
+    description: "Cleaned sales transactions"
+    columns:
+      - name: sale_id
+        description: "Sale ID"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Customer ID"
+      - name: product_id
+        description: "Product ID"
+      - name: store_id
+        description: "Store ID"
+      - name: sale_date
+        description: "Sale date"
+      - name: quantity
+        description: "Quantity sold"
+      - name: unit_price
+        description: "Unit price"
+      - name: discount_percent
+        description: "Discount percentage"
+      - name: total_amount
+        description: "Total sale amount"
+      - name: _dlt_load_id
+        description: "Load ID from DLT"
+      - name: _dlt_id
+        description: "Row ID from DLT"
+
+  - name: stg_inventory
+    description: "Cleaned inventory levels"
+    columns:
+      - name: inventory_id
+        description: "Inventory ID"
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: "Product ID"
+      - name: store_id
+        description: "Store ID"
+      - name: stock_level
+        description: "Current stock level"
+      - name: reorder_point
+        description: "Reorder point"
+      - name: last_updated
+        description: "Last update date"
+      - name: _dlt_load_id
+        description: "Load ID from DLT"
+      - name: _dlt_id
+        description: "Row ID from DLT"
