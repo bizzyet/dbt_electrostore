@@ -1,9 +1,20 @@
-name: dbt Run
+name: dbt Run and Deploy Docs
 
 on:
   push:
     branches:
       - master
+
+# Sets permissions for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   dbt:
@@ -35,3 +46,38 @@ jobs:
 
       - name: Run dbt test
         run: docker compose run dbt test
+
+      - name: Generate dbt docs
+        run: docker compose run dbt docs generate
+
+      - name: Upload dbt docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-docs
+          path: target/
+
+  deploy:
+    needs: dbt
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download dbt docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbt-docs
+          path: target/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
