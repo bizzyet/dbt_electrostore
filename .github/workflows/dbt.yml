@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 # Sets permissions for GitHub Pages deployment
 permissions:
@@ -40,6 +43,9 @@ jobs:
 
       - name: Run dbt deps
         run: docker compose run dbt deps
+
+      - name: Run dbt seed
+        run: docker compose run dbt seed
 
       - name: Run dbt run
         run: docker compose run dbt run
