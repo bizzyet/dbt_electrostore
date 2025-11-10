@@ -38,11 +38,11 @@ jobs:
       - name: Build Docker image
         run: docker compose build
 
-      # Full dbt workflow only runs on pull requests
-      - name: Run dbt debug
-        if: github.event_name == 'pull_request'
-        run: docker compose run dbt debug
+      # dbt deps runs on both PR and push to master (needed for seed/run/test/docs)
+      - name: Run dbt deps
+        run: docker compose run dbt deps
 
+      # Full dbt workflow only runs on pull requests
       - name: Run dbt seed
         if: github.event_name == 'pull_request'
         run: docker compose run dbt seed
@@ -54,10 +54,6 @@ jobs:
       - name: Run dbt test
         if: github.event_name == 'pull_request'
         run: docker compose run dbt test
-
-      # dbt deps runs on both PR and push to master (needed for docs)
-      - name: Run dbt deps
-        run: docker compose run dbt deps
 
       # Docs generation runs on both PR and push to master
       - name: Generate dbt docs
