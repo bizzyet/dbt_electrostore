@@ -1,9 +1,23 @@
-name: dbt Run
+name: dbt Run and Deploy Docs
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
+
+# Sets permissions for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   dbt:
@@ -24,17 +38,61 @@ jobs:
       - name: Build Docker image
         run: docker compose build
 
+      # Full dbt workflow only runs on pull requests
       - name: Run dbt debug
+        if: github.event_name == 'pull_request'
         run: docker compose run dbt debug
 
-      - name: Run dbt deps
-        run: docker compose run dbt deps
-
       - name: Run dbt seed
+        if: github.event_name == 'pull_request'
         run: docker compose run dbt seed
 
       - name: Run dbt run
+        if: github.event_name == 'pull_request'
         run: docker compose run dbt run
 
       - name: Run dbt test
+        if: github.event_name == 'pull_request'
         run: docker compose run dbt test
+
+      # dbt deps runs on both PR and push to master (needed for docs)
+      - name: Run dbt deps
+        run: docker compose run dbt deps
+
+      # Docs generation runs on both PR and push to master
+      - name: Generate dbt docs
+        run: docker compose run dbt docs generate
+
+      - name: Upload dbt docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-docs
+          path: target/
+
+  deploy:
+    needs: dbt
+    runs-on: ubuntu-latest
+    # Only deploy on push to master, not on pull requests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download dbt docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dbt-docs
+          path: target/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
