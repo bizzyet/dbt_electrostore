@@ -29,7 +29,10 @@ select * from {{ ref('stg_customers') }}
 
 * ### enkel import av csv
 
-# 
+#  makroer
+
+* ### jinja makroer kan skrives for oppgaver som skal gjentas mange ganger i kodebasen
+* ### også sentrale makroer og kodegenering som vedlikeholdes av community
 
 
 
