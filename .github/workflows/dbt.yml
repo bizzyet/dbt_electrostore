@@ -1,0 +1,37 @@
+name: dbt Run
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  dbt:
+    runs-on: ubuntu-latest
+
+    env:
+      DBT_SERVER: ${{ secrets.DBT_SERVER }}
+      DBT_DATABASE: ${{ secrets.DBT_DATABASE }}
+      DBT_USER: ${{ secrets.DBT_USER }}
+      DBT_PASSWORD: ${{ secrets.DBT_PASSWORD }}
+      DBT_SCHEMA: ${{ secrets.DBT_SCHEMA }}
+      DBT_PORT: ${{ secrets.DBT_PORT }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker compose build
+
+      - name: Run dbt debug
+        run: docker compose run dbt debug
+
+      - name: Run dbt deps
+        run: docker compose run dbt deps
+
+      - name: Run dbt run
+        run: docker compose run dbt run
+
+      - name: Run dbt test
+        run: docker compose run dbt test

@@ -1,7 +1,7 @@
 # dbt Project Configuration
 # https://docs.getdbt.com/reference/dbt_project.yml
 
-name: 'jacky_dbt'
+name: 'electrostore_dbt'
 version: '1.0.0'
 config-version: 2
 
@@ -24,9 +24,10 @@ clean-targets:
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 models:
-  jacky_dbt:
+  electrostore_dbt:
     # Default materialization for all models
     +materialized: view
+    +as_columnstore: False
 
     # Staging models configuration
     staging:
@@ -38,12 +39,19 @@ models:
       +materialized: view
       +schema: intermediate
 
+    # Mart models configuration
+    mart:
+      +materialized: table
+      +schema: mart
+
 # Configure seeds (CSV files)
 seeds:
-  jacky_dbt:
+  electrostore_dbt:
     +schema: seeds
+    +as_columnstore: False
 
 # Configure snapshots
 snapshots:
-  jacky_dbt:
+  electrostore_dbt:
     +target_schema: snapshots
+    +as_columnstore: False

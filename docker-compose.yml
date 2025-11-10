@@ -1,0 +1,24 @@
+services:
+  dbt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dbt-electrostore:latest
+    container_name: dbt-electrostore
+    environment:
+      - DBT_SERVER=${DBT_SERVER}
+      - DBT_DATABASE=${DBT_DATABASE}
+      - DBT_USER=${DBT_USER}
+      - DBT_PASSWORD=${DBT_PASSWORD}
+      - DBT_SCHEMA=${DBT_SCHEMA}
+      - DBT_PORT=${DBT_PORT}
+    volumes:
+      # Mount dbt project for development (see changes without rebuilding)
+      - ./dbt:/usr/app/dbt/dbt
+      # Mount profiles.yml if you want to modify it locally
+      - ./profiles.yml:/usr/app/dbt/profiles.yml
+      # Persist target directory (compiled files, logs)
+      - ./target:/usr/app/dbt/dbt/target
+    working_dir: /usr/app/dbt/dbt
+    # Override command as needed, e.g.: docker-compose run dbt test
+    command: ["--help"]

@@ -1,4 +1,4 @@
-# dbt Project: jacky_dbt
+# dbt Project: electrostore_dbt
 
 This dbt project is configured to work with Azure SQL Server using the `dbt_debby` profile.
 
@@ -17,7 +17,7 @@ This project uses **uv** for dependency management and **dbt-sqlserver** for Azu
 Dependencies are managed in the root `pyproject.toml` and installed automatically by uv:
 
 ```bash
-# From the repo root (/home/eirikteigland/projects/jacky)
+# From the repo root (/home/eirikteigland/projects/electrostore)
 uv sync
 ```
 
@@ -147,7 +147,7 @@ sources:
 
 | Command | Uses | When to Use |
 |---------|------|-------------|
-| `uv run dbt` | Project venv dbt-sqlserver | **Always use this** for jacky project |
+| `uv run dbt` | Project venv dbt-sqlserver | **Always use this** for electrostore project |
 | `dbtf` | Global dbt-fusion binary | For other projects using dbt-fusion |
 
 The project's `.venv/bin/dbt` takes priority over the global `/home/eirikteigland/.local/bin/dbt` (dbt-fusion).
