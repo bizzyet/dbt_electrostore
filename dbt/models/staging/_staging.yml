@@ -102,10 +102,30 @@ models:
           - not_null
       - name: customer_id
         description: "Customer ID"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
       - name: product_id
         description: "Product ID"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+              config:
+                severity: warn
       - name: store_id
         description: "Store ID"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stores')
+                field: store_id
       - name: sale_date
         description: "Sale date"
       - name: quantity
@@ -131,8 +151,22 @@ models:
           - not_null
       - name: product_id
         description: "Product ID"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+              config:
+                severity: warn
       - name: store_id
         description: "Store ID"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stores')
+                field: store_id
       - name: stock_level
         description: "Current stock level"
       - name: reorder_point
