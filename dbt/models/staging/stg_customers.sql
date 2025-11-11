@@ -14,7 +14,7 @@ renamed as (
         cast(customer_id as int) as customer_id,
 
         -- Customer attributes
-        cast(name as nvarchar(255)) as customer_name,
+        -- customer_name removed for GDPR compliance
         cast(email as nvarchar(255)) as email,
         cast(phone as nvarchar(50)) as phone,
         cast(customer_type as nvarchar(50)) as customer_type,

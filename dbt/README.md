@@ -118,7 +118,6 @@ Example model:
 
 select
     customer_id,
-    customer_name,
     email,
     created_at
 from {{ source('raw', 'customers') }}
