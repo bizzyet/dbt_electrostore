@@ -54,6 +54,10 @@ models:
         description: "Unit cost"
       - name: status
         description: "Product status"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Active', 'Discontinued']
       - name: launch_date
         description: "Launch date"
       - name: _dlt_load_id

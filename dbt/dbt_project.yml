@@ -49,9 +49,3 @@ seeds:
   electrostore_dbt:
     +schema: seeds
     +as_columnstore: False
-
-# Configure snapshots
-snapshots:
-  electrostore_dbt:
-    +target_schema: snapshots
-    +as_columnstore: False

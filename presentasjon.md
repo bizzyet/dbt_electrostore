@@ -29,7 +29,40 @@ select * from {{ ref('stg_customers') }}
 
 * ### enkel import av csv
 
-# 
+# makroer
+
+* ### bygg egne, eller bruk makroer utviklet av community.
+
+* ### https://github.com/dbt-labs/dbt-utils
+* ### https://github.com/dbt-labs/dbt-codegen
+
+
+```
+
+
+dbt run-operation generate_base_model --args \
+'{"source_name": "archive_electrostore", "table_name": "customers"}'
+
+
+```
+
+# miljøer
+
+* ### naturlig og tydelig skille mellom test- og produksjonsmiljøer (targets)
+* ### egne utviklingskjema
+
+# ci / cd
+
+* ### bygd med tanke pipelines
+* ### pull request -> dbt build -> prod
+
+# dokumentasjon
+
+* ### innebygget støtte for dokumentasjon
+
+# språkmodeller
+
+* ### et mye bedre miljø å operere i for en språkmodell
 
 
 
