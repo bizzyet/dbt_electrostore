@@ -10,6 +10,7 @@ select
     concat(customer_id, '_', customer_name) as customer,
     customer_id,
     customer_name,
+    concat('e-post:', customer_id, '@electrostore.com') as email_text,
     email,
     phone,
     customer_type,
