@@ -38,21 +38,24 @@ jobs:
       - name: Build Docker image
         run: docker compose build
 
-      - name: Run dbt debug
-        run: docker compose run dbt debug
-
+      # dbt deps runs on both PR and push to master (needed for seed/run/test/docs)
       - name: Run dbt deps
         run: docker compose run dbt deps
 
+      # Full dbt workflow only runs on pull requests
       - name: Run dbt seed
+        if: github.event_name == 'pull_request'
         run: docker compose run dbt seed
 
       - name: Run dbt run
+        if: github.event_name == 'pull_request'
         run: docker compose run dbt run
 
       - name: Run dbt test
+        if: github.event_name == 'pull_request'
         run: docker compose run dbt test
 
+      # Docs generation runs on both PR and push to master
       - name: Generate dbt docs
         run: docker compose run dbt docs generate
 
@@ -65,6 +68,8 @@ jobs:
   deploy:
     needs: dbt
     runs-on: ubuntu-latest
+    # Only deploy on push to master, not on pull requests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

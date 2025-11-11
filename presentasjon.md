@@ -66,3 +66,4 @@ dbt run-operation generate_base_model --args \
 
 
 
+
