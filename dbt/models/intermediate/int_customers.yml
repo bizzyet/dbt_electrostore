@@ -6,8 +6,6 @@ models:
     columns:
       - name: customer_id
         description: "Customer ID"
-      - name: customer_name
-        description: "Customer name"
       - name: email
         description: "Email"
       - name: phone

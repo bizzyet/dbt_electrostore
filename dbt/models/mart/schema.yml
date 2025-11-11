@@ -10,9 +10,7 @@ models:
           - unique
           - not_null
       - name: customer
-        description: Concatenated customer identifier and name
-      - name: customer_name
-        description: Name of the customer
+        description: Anonymized customer identifier
       - name: email
         description: Customer email address
       - name: phone
