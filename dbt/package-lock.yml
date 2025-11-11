@@ -5,7 +5,4 @@ packages:
   - name: codegen
     package: dbt-labs/codegen
     version: 0.13.1
-  - name: tsql_utils
-    package: dbt-msft/tsql_utils
-    version: 1.2.0
-sha1_hash: 980e92af827e9286998e30b16a14a692211492ab
+sha1_hash: 1dc0f37e356f99f9df860721f011bf2aba37f29e
